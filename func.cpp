@@ -163,6 +163,20 @@ void ctor (node *node) {
     return;
 }
 
+void dtor (node **node) {
+
+    if (*node == nullptr)
+        return;
+    (*node)->right = nullptr;
+    (*node)->left  = nullptr;
+
+    (*node)->data  = 0;
+    (*node)->type  = 0;
+    
+    *node = nullptr;
+
+    return;
+}
 
 static size_t FILESIZE_FUNC_FSTAT (FILE *in) {
 
