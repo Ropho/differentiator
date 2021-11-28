@@ -53,7 +53,7 @@ void get_tree_from_buff (node **node, char** buff) {
             if (isdigit (**buff)) {
                 
                 (*node)->type = NUMBER;
-                (*node)->data = **buff;
+                (*node)->data = 10 * (*node)->data + **buff - '0';
                 printf ("%c", **buff);
                 ++(*buff);
             }
@@ -108,23 +108,43 @@ static void in_order_graph (node *node, FILE *out) {
 
     if (node->left != nullptr) {
         fprintf (out, "\"%d\" -> \"%d\";\n", node, node->left);
-        fprintf (out, "%d [label=\"%c\"]\n", node, node->data);
-        fprintf (out, "%d [label=\"%c\"]\n", node->left, node->left->data);
+
+        if (node->type == NUMBER)
+            fprintf (out, "%d [label=\"%d\"]\n", node, node->data);
+        else
+            fprintf (out, "%d [label=\"%c\"]\n", node, node->data);
+
+        if (node->left->type == NUMBER)
+            fprintf (out, "%d [label=\"%d\"]\n", node->left, node->left->data);
+        else
+            fprintf (out, "%d [label=\"%c\"]\n", node->left, node->left->data);
 
         in_order_graph (node->left, out);
     }
 
     if (node->right != nullptr) {
         fprintf (out, "\"%d\" -> \"%d\";\n", node, node->right);
-        fprintf (out, "%d [label=\"%c\"];\n", node, node->data);
-        fprintf (out, "%d [label=\"%c\"];\n", node->right, node->right->data);
+
+         if (node->type == NUMBER)
+            fprintf (out, "%d [label=\"%d\"]\n", node, node->data);
+        else
+            fprintf (out, "%d [label=\"%c\"]\n", node, node->data);
+
+        if (node->right->type == NUMBER)
+            fprintf (out, "%d [label=\"%d\"]\n", node->right, node->right->data);
+        else
+            fprintf (out, "%d [label=\"%c\"]\n", node->right, node->right->data);
 
         in_order_graph (node->right, out);
 
     }
     
     if (node->left == nullptr && node->right == nullptr) {
-        fprintf (out, "%d [label=\"%c\"];\n", node, node->data);
+        if (node->type == NUMBER)
+            fprintf (out, "%d [label=\"%d\"];\n", node, node->data);
+        else
+            fprintf (out, "%d [label=\"%c\"];\n", node, node->data);
+
     }
     return;
 }
