@@ -1,2 +1,4 @@
+CC = g++
+
 main.o: main.cpp
-	g++ main.cpp func.cpp -o a
+	$(CC) main.cpp func.cpp -o a
