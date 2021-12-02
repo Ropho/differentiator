@@ -5,29 +5,8 @@
 #include <assert.h>
 #include <sys\stat.h>
 #include <ctype.h>
+#include "libr_tree_diff.h"
 
-
-
-typedef struct node {
-
-    int data    = 0;
-
-    char type  = 0;
-
-    node *left = nullptr;
-
-    node *right = nullptr;
-
-}node;
-
-
-enum TYPE {
-
-    NUMBER   = 1,
-    VARIABLE = 2,
-    OPERATION = 3,
-
-};
 
 
 void ctor                  (node *head);

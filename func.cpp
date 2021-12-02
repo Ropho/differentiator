@@ -1,6 +1,22 @@
 #include "func.h"
 
 
+node *diff (node *node) {
+    
+    switch (node->type) {
+
+        case NUMBER:
+            // return new_node (NUMBER, 0, nullptr, nullptr);
+        case VARIABLE:
+            return;
+        default:
+            return;
+    }
+
+    return;
+}
+
+
 void get_buff_from_file (node **head,  FILE *in) {
     
     size_t file_size = FILESIZE_FUNC_FSTAT (in);
@@ -18,7 +34,7 @@ void get_buff_from_file (node **head,  FILE *in) {
 }
 
 
-void get_tree_from_buff (node **node, char** buff) {
+void get_tree_from_buff (node **node, char **buff) {
 
     assert (node  != nullptr);
     assert (*buff != nullptr);
@@ -149,34 +165,6 @@ static void in_order_graph (node *node, FILE *out) {
     return;
 }
 
-
-void ctor (node *node) {
-
-    assert (node != nullptr);
-
-    (node)->right = nullptr;
-    (node)->left  = nullptr;
-
-    (node)->data  = 0;
-    (node)->type  = 0;
-
-    return;
-}
-
-void dtor (node **node) {
-
-    if (*node == nullptr)
-        return;
-    (*node)->right = nullptr;
-    (*node)->left  = nullptr;
-
-    (*node)->data  = 0;
-    (*node)->type  = 0;
-    
-    *node = nullptr;
-
-    return;
-}
 
 static size_t FILESIZE_FUNC_FSTAT (FILE *in) {
 
