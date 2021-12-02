@@ -1,5 +1,5 @@
 #include "func.h"
-                                        //TODO 1.12
+                                        //TODO 2.12
                                         //add lib!!!
 
                                         //1) дифференциатор

@@ -8,12 +8,12 @@ node *diff (node *node) {
         case NUMBER:
             // return new_node (NUMBER, 0, nullptr, nullptr);
         case VARIABLE:
-            return;
+            return 0;
         default:
-            return;
+            return 0;
     }
 
-    return;
+    return 0;
 }
 
 
@@ -43,8 +43,7 @@ void get_tree_from_buff (node **node, char **buff) {
 
         if (**buff == '(') {
             if (*node == nullptr) {
-                *node = (struct node*)calloc(1, sizeof (struct node));
-                ctor (*node);
+                ctor (node);
                 ++(*buff);
             }
             else {
