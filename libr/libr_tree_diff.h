@@ -29,6 +29,15 @@ enum TYPE {
     NUMBER    = 1,
     VARIABLE  = 2,
     OPERATION = 3,
+    FUNCTION  = 4,
+};
+
+
+enum FUNCTIONS {
+
+    LN  = 'l' + 'n',
+    COS = 'c' + 'o' + 's',
+    SIN = 's' + 'i' + 'n',
 
 };
 

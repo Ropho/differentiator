@@ -1,10 +1,8 @@
 #include "func.h"
-                                        //TODO 6.12
-                                        //add lib!!!
-
-                                        //1) дифференциатор
-                                        //2) LATEX
-                                        //3) упрощение
+                                                                //TO DO
+                                                                //1)INSERT RIGHT
+                                                                //2)INSERT LEFT
+                                                                //3)DELETE RIGHT/LEFT
 
 int main (void) {
 
