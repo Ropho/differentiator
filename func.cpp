@@ -92,13 +92,34 @@ void diff_mul (node **node) {
 }
 
 
-void diff_pow (node **node) {
+void diff_pow_number (node **node) {
 
     assert (*node != nullptr);
 
+    struct node *right = nullptr;
+    copy_node (&right, *node);
+    right->right->data--;
+
+    struct node *mul = nullptr;
+    ctor (&mul);
+    mul->type = OPERATION;
+    mul->data = '*';
+
+    struct node *left = nullptr;
+    ctor (&left);
+    left->type = NUMBER;
+    left->data = (*node)->right->data;
+
+    dtor_tree (node);
+
+    *node = mul;
+    mul->right = right;
+    mul->left = left;
 
     return;
 }
+
+
 void diff (node **node) {
     
     switch ((*node)->type) {
@@ -131,7 +152,10 @@ void diff (node **node) {
                 break;
                 }
                 case '^': {
-                    diff_pow (node);
+                    if ((*node)->right->type == NUMBER)
+                        diff_pow_number (node);
+                    else
+                        return;
                     return;
                 break;
                 }

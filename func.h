@@ -18,5 +18,6 @@ void get_buff_from_file (node **node, FILE *in);
 void get_tree_from_buff (node **node, char **buff);
 void diff (node **node);
 void copy_node (node **dest, node *src);
+void diff_pow_number (node **node);
 
 #endif
