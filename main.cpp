@@ -16,8 +16,12 @@ int main (void) {
     node *head = nullptr;
     get_buff_from_file (&head, in);
     
-    graph (head);
+    // graph (head);
 
+    diff (&head);
+
+    graph (head);
+    
     dtor (&head);
     
     return 0;

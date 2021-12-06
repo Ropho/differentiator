@@ -16,5 +16,7 @@ static void in_order_graph (node *node, FILE *out);
 static size_t FILESIZE_FUNC_FSTAT (FILE *in);
 void get_buff_from_file (node **node, FILE *in);
 void get_tree_from_buff (node **node, char **buff);
+void diff (node **node);
+void copy_node (node **dest, node *src);
 
 #endif

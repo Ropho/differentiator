@@ -1,25 +1,124 @@
 digraph structs {
-node [style=filled,color="hotpink"];
-"2060592" -> "2059952";
-2060592 [label="*"]
-2059952 [label="+"]
-"2059952" -> "2059984";
-2059952 [label="+"]
-2059984 [label="13"]
-2059984 [label="13"];
-"2059952" -> "2060208";
-2059952 [label="+"]
-2060208 [label="x"]
-2060208 [label="x"];
-"2060592" -> "2060624";
-2060592 [label="*"]
-2060624 [label="^"]
-"2060624" -> "2060144";
-2060624 [label="^"]
-2060144 [label="x"]
-2060144 [label="x"];
-"2060624" -> "2060336";
-2060624 [label="^"]
-2060336 [label="22"]
-2060336 [label="22"];
+"12873776" -> "12873648";
+12873776 [shape=record];
+12873776 [style=filled,color="green"];
+12873776 [label="+"]
+12873648 [shape=record];
+12873648 [style=filled,color="green"];
+12873648 [label="*"]
+"12873648" -> "12883904";
+12873648 [shape=record];
+12873648 [style=filled,color="green"];
+12873648 [label="*"]
+12883904 [shape=record];
+12883904 [style=filled,color="green"];
+12883904 [label="^"]
+"12883904" -> "12884448";
+12883904 [shape=record];
+12883904 [style=filled,color="green"];
+12883904 [label="^"]
+12884448 [shape=diamond];
+12884448 [style=filled,color="cyan2"];
+12884448 [label="120"]
+12884448 [shape=diamond];
+12884448 [style=filled,color="cyan2"];
+12884448 [label="x"];
+"12883904" -> "12883808";
+12883904 [shape=record];
+12883904 [style=filled,color="green"];
+12883904 [label="^"]
+12883808 [shape=oval];
+12883808 [style=filled,color="hotpink"];
+12883808 [label="22"]
+12883808 [shape=oval];
+12883808 [style=filled,color="hotpink"];
+12883808 [label="22"];
+"12873648" -> "12873744";
+12873648 [shape=record];
+12873648 [style=filled,color="green"];
+12873648 [label="*"]
+12873744 [shape=record];
+12873744 [style=filled,color="green"];
+12873744 [label="+"]
+"12873744" -> "12873872";
+12873744 [shape=record];
+12873744 [style=filled,color="green"];
+12873744 [label="+"]
+12873872 [shape=oval];
+12873872 [style=filled,color="hotpink"];
+12873872 [label="13"]
+12873872 [shape=oval];
+12873872 [style=filled,color="hotpink"];
+12873872 [label="13"];
+"12873744" -> "12873904";
+12873744 [shape=record];
+12873744 [style=filled,color="green"];
+12873744 [label="+"]
+12873904 [shape=diamond];
+12873904 [style=filled,color="cyan2"];
+12873904 [label="x"]
+12873904 [shape=diamond];
+12873904 [style=filled,color="cyan2"];
+12873904 [label="x"];
+"12873776" -> "12873712";
+12873776 [shape=record];
+12873776 [style=filled,color="green"];
+12873776 [label="+"]
+12873712 [shape=record];
+12873712 [style=filled,color="green"];
+12873712 [label="*"]
+"12873712" -> "12883424";
+12873712 [shape=record];
+12873712 [style=filled,color="green"];
+12873712 [label="*"]
+12883424 [shape=record];
+12883424 [style=filled,color="green"];
+12883424 [label="+"]
+"12883424" -> "12884320";
+12883424 [shape=record];
+12883424 [style=filled,color="green"];
+12883424 [label="+"]
+12884320 [shape=oval];
+12884320 [style=filled,color="hotpink"];
+12884320 [label="0"]
+12884320 [shape=oval];
+12884320 [style=filled,color="hotpink"];
+12884320 [label="0"];
+"12883424" -> "12883936";
+12883424 [shape=record];
+12883424 [style=filled,color="green"];
+12883424 [label="+"]
+12883936 [shape=oval];
+12883936 [style=filled,color="hotpink"];
+12883936 [label="1"]
+12883936 [shape=oval];
+12883936 [style=filled,color="hotpink"];
+12883936 [label="1"];
+"12873712" -> "12884192";
+12873712 [shape=record];
+12873712 [style=filled,color="green"];
+12873712 [label="*"]
+12884192 [shape=record];
+12884192 [style=filled,color="green"];
+12884192 [label="^"]
+"12884192" -> "12884064";
+12884192 [shape=record];
+12884192 [style=filled,color="green"];
+12884192 [label="^"]
+12884064 [shape=diamond];
+12884064 [style=filled,color="cyan2"];
+12884064 [label="120"]
+12884064 [shape=diamond];
+12884064 [style=filled,color="cyan2"];
+12884064 [label="x"];
+"12884192" -> "12882912";
+12884192 [shape=record];
+12884192 [style=filled,color="green"];
+12884192 [label="^"]
+12882912 [shape=oval];
+12882912 [style=filled,color="hotpink"];
+12882912 [label="22"]
+12882912 [shape=oval];
+12882912 [style=filled,color="hotpink"];
+12882912 [label="22"];
 }
