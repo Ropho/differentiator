@@ -1,8 +1,13 @@
 #include "func.h"
                                                                 //TO DO
+                                                                //REFACTORING
                                                                 //1)INSERT RIGHT
                                                                 //2)INSERT LEFT
                                                                 //3)DELETE RIGHT/LEFT
+                                                                //
+                                                                //READ -1 from file
+                                                                //add cos(x), ln(x)...
+
 
 int main (void) {
 
@@ -14,9 +19,12 @@ int main (void) {
     node *head = nullptr;
     get_buff_from_file (&head, in);
     
-    // graph (head);
 
     diff (&head);
+
+    // graph (head);
+    
+    post_order (&head, simplify);
 
     graph (head);
     

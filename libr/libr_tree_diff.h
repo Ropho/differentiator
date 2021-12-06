@@ -44,9 +44,9 @@ enum FUNCTIONS {
 void ctor (node **node);
 void dtor (node **node);
 void func (node *node);
-void pre_order (node *node, void (*func) (struct node *));
-void in_order (node *node, void (*func) (struct node *));
-void post_order (node *node, void (*func) (struct node *));
+void pre_order (node **node, void (*func) (struct node **));
+void in_order (node **node, void (*func) (struct node **));
+void post_order (node **node, void (*func) (struct node **));
 void dtor_tree (node **node);
 
 #endif

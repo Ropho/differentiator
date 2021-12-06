@@ -15,60 +15,54 @@ void ctor (node **node) {
 }
 
 
-void func (node *node) {
-    
-    assert (node != nullptr);
+void pre_order (node **node, void (*func) (struct node **)) {
 
-    printf ("%d", node->data);
-
-    return;
-}
-
-
-void pre_order (node *node, void (*func) (struct node *)) {
-
-    assert (node != nullptr);
+    assert (*node != nullptr);
 
     func (node);
 
-    if (node->left != nullptr)
-        pre_order (node->left, func);
-    if (node->right != nullptr)
-        pre_order (node->right, func);
-
-    return;
-}
-
-
-void in_order (node *node, void (*func) (struct node *)) {
-
-    assert (node != nullptr);
-
-    if (node->left != nullptr)
-        in_order (node->left, func);
+    if ((*node)->left != nullptr)
+        pre_order (&(*node)->left, func);
     
-    func (node);
-
-    if (node->right != nullptr)
-        in_order (node->right, func);
+    if ((*node)->right != nullptr)
+        pre_order (&(*node)->right, func);
     
     return;
 }
 
 
-void post_order (node *node, void (*func) (struct node *)) {
+void in_order (node **node, void (*func) (struct node **)) {
 
-    assert (node != nullptr);
+    assert (*node != nullptr);
 
-    if (node->left != nullptr)
-        in_order (node->left, func);
+    if ((*node)->left != nullptr)
+        in_order (&(*node)->left, func);
     
-    if (node->right != nullptr)
-        in_order (node->right, func);
-
     func (node);
 
-    return; 
+    if ((*node)->right != nullptr)
+        in_order (&(*node)->right, func);
+    
+    return;
+}
+
+
+
+
+void post_order (node **node, void (*func) (struct node **)) {
+
+    assert (*node != nullptr);
+
+    if ((*node)->left != nullptr)
+        post_order (&(*node)->left, func);
+    
+
+    if ((*node)->right != nullptr)
+        post_order (&(*node)->right, func);
+
+    func (node);
+    
+    return;
 }
 
 

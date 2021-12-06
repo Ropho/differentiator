@@ -1,69 +1,85 @@
 digraph structs {
-11366064 [shape=record];
-11366064 [style=filled,color="green"];
-11366064 [label="*"]
-"11366064" -> "11366800";
-11366800 [shape=record];
-11366800 [style=filled,color="green"];
-11366800 [label="*"]
+11497648 [shape=record];
+11497648 [style=filled,color="green"];
+11497648 [label="+"]
+"11497648" -> "11497520";
+11497520 [shape=record];
+11497520 [style=filled,color="green"];
+11497520 [label="*"]
 
-11366800 [shape=record];
-11366800 [style=filled,color="green"];
-11366800 [label="*"]
-"11366800" -> "11366128";
-11366128 [shape=oval];
-11366128 [style=filled,color="hotpink"];
-11366128 [label="3"]
+11497520 [shape=record];
+11497520 [style=filled,color="green"];
+11497520 [label="*"]
+"11497520" -> "11507024";
+11507024 [shape=record];
+11507024 [style=filled,color="green"];
+11507024 [label="*"]
 
-11366128 [shape=oval];
-11366128 [style=filled,color="hotpink"];
-11366128 [label="3"]
-"11366800" -> "11366896";
-11366896 [shape=record];
-11366896 [style=filled,color="green"];
-11366896 [label="^"]
+11507024 [shape=record];
+11507024 [style=filled,color="green"];
+11507024 [label="*"]
+"11507024" -> "11507376";
+11507376 [shape=oval];
+11507376 [style=filled,color="hotpink"];
+11507376 [label="2"]
 
-11366896 [shape=record];
-11366896 [style=filled,color="green"];
-11366896 [label="^"]
-"11366896" -> "11366928";
-11366928 [shape=diamond];
-11366928 [style=filled,color="cyan2"];
-11366928 [label="x"]
+11507376 [shape=oval];
+11507376 [style=filled,color="hotpink"];
+11507376 [label="2"]
+"11507024" -> "11507280";
+11507280 [shape=diamond];
+11507280 [style=filled,color="cyan2"];
+11507280 [label="x"]
 
-11366928 [shape=diamond];
-11366928 [style=filled,color="cyan2"];
-11366928 [label="x"]
-"11366896" -> "11366416";
-11366416 [shape=record];
-11366416 [style=filled,color="green"];
-11366416 [label="-"]
+11507280 [shape=diamond];
+11507280 [style=filled,color="cyan2"];
+11507280 [label="x"]
+"11497520" -> "11497168";
+11497168 [shape=record];
+11497168 [style=filled,color="green"];
+11497168 [label="+"]
 
-11366416 [shape=record];
-11366416 [style=filled,color="green"];
-11366416 [label="-"]
-"11366416" -> "11366160";
-11366160 [shape=oval];
-11366160 [style=filled,color="hotpink"];
-11366160 [label="3"]
+11497168 [shape=record];
+11497168 [style=filled,color="green"];
+11497168 [label="+"]
+"11497168" -> "11497232";
+11497232 [shape=oval];
+11497232 [style=filled,color="hotpink"];
+11497232 [label="1"]
 
-11366160 [shape=oval];
-11366160 [style=filled,color="hotpink"];
-11366160 [label="3"]
-"11366416" -> "11366192";
-11366192 [shape=oval];
-11366192 [style=filled,color="hotpink"];
-11366192 [label="1"]
+11497232 [shape=oval];
+11497232 [style=filled,color="hotpink"];
+11497232 [label="1"]
+"11497168" -> "11497584";
+11497584 [shape=diamond];
+11497584 [style=filled,color="cyan2"];
+11497584 [label="x"]
 
-11366192 [shape=oval];
-11366192 [style=filled,color="hotpink"];
-11366192 [label="1"]
-"11366064" -> "11366704";
-11366704 [shape=oval];
-11366704 [style=filled,color="hotpink"];
-11366704 [label="1"]
+11497584 [shape=diamond];
+11497584 [style=filled,color="cyan2"];
+11497584 [label="x"]
+"11497648" -> "11507984";
+11507984 [shape=record];
+11507984 [style=filled,color="green"];
+11507984 [label="^"]
 
-11366704 [shape=oval];
-11366704 [style=filled,color="hotpink"];
-11366704 [label="1"]
+11507984 [shape=record];
+11507984 [style=filled,color="green"];
+11507984 [label="^"]
+"11507984" -> "11507824";
+11507824 [shape=diamond];
+11507824 [style=filled,color="cyan2"];
+11507824 [label="x"]
+
+11507824 [shape=diamond];
+11507824 [style=filled,color="cyan2"];
+11507824 [label="x"]
+"11507984" -> "11507632";
+11507632 [shape=oval];
+11507632 [style=filled,color="hotpink"];
+11507632 [label="2"]
+
+11507632 [shape=oval];
+11507632 [style=filled,color="hotpink"];
+11507632 [label="2"]
 }

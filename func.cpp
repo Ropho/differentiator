@@ -148,7 +148,125 @@ void simplify (node **node) {
 
     assert (*node != nullptr);
 
-    
+    if ((*node)->type == OPERATION) {
+        switch ((*node)->data) {
+
+            case '*': 
+
+                if ((*node)->right->data == 1) {
+                    struct node *tmp= nullptr;
+                    copy_node (&tmp, (*node)->left);
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+                else if ((*node)->left->data == 1) {
+                    struct node *tmp = nullptr;
+                    copy_node (&tmp, (*node)->right);
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+                else if ((*node)->right->data == 0 || (*node)->left->data == 0) {
+                    dtor_tree (node);
+                    ctor (node);
+                    (*node)->type = NUMBER;
+                    (*node)->data = 0;
+                }
+                else if ((*node)->right->type == NUMBER && (*node)->left->type == NUMBER) {
+                    
+                    struct node *tmp = nullptr;
+                    ctor (&tmp);
+                    tmp->type = NUMBER;
+                    tmp->data = (*node)->left->data * (*node)->right->data;
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+            break;
+
+            case '+':
+
+                if ((*node)->right->data == 0) {
+                    struct node *tmp = nullptr;
+                    copy_node (&tmp, (*node)->left);
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+                else if ((*node)->left->data == 0) {
+                    struct node *tmp = nullptr;
+                    copy_node (&tmp, (*node)->right);
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+                else if ((*node)->right->type == NUMBER && (*node)->left->type == NUMBER) {
+                    
+                    struct node *tmp = nullptr;
+                    ctor (&tmp);
+                    tmp->type = NUMBER;
+                    tmp->data = (*node)->left->data + (*node)->right->data;
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+            break;
+
+            case '-':
+
+                if ((*node)->right->data == 0) {
+                    struct node *tmp = nullptr;
+                    copy_node (&tmp, (*node)->left);
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+                else if ((*node)->left->data == 0) {
+                    struct node *tmp = nullptr;
+                    copy_node (&tmp, (*node)->right);
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+                else if ((*node)->right->type == NUMBER && (*node)->left->type == NUMBER) {
+                    
+                    struct node *tmp = nullptr;
+                    ctor (&tmp);
+                    tmp->type = NUMBER;
+                    tmp->data = (*node)->left->data - (*node)->right->data;
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+            break;
+
+            case '^':
+
+                if ((*node)->right->data == 1) {
+                    
+                    struct node *tmp = nullptr;
+                    copy_node (&tmp, (*node)->left);
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+                else if ((*node)->right->data == 0) {
+                    struct node *tmp = nullptr;
+                    ctor (&tmp);
+                    tmp->type = NUMBER;
+                    tmp->data = 0;
+
+                    dtor_tree (node);
+                    copy_node (node, tmp);
+                }
+                
+            break;
+            default:
+            break;
+        }
+
+    }
     return;
 }
 
