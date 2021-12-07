@@ -30,6 +30,7 @@ enum TYPE {
     VARIABLE  = 2,
     OPERATION = 3,
     FUNCTION  = 4,
+    FUNCTION_NAME = 5,
 };
 
 

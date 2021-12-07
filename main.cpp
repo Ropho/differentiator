@@ -1,12 +1,9 @@
 #include "func.h"
-                                                                //TO DO
-                                                                //REFACTORING
-                                                                //1)INSERT RIGHT
-                                                                //2)INSERT LEFT
-                                                                //3)DELETE RIGHT/LEFT
-                                                                //
-                                                                //READ -1 from file
-                                                                //add cos(x), ln(x)...
+                                                                //TO DO 7.12
+                                                                //1)производные cos,sin,ln
+                                                                //2)добавить отриц числа
+                                                                //3)рефакторинг (add,
+                                                                //delete) node
 
 
 int main (void) {

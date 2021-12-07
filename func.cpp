@@ -154,7 +154,7 @@ void simplify (node **node) {
             case '*': 
 
                 if ((*node)->right->data == 1) {
-                    struct node *tmp= nullptr;
+                    struct node *tmp = nullptr;
                     copy_node (&tmp, (*node)->left);
 
                     dtor_tree (node);
@@ -316,6 +316,9 @@ void diff (node **node) {
 
         break;
         }
+        case FUNCTION :
+            
+        break;
 
         default:
         break;
@@ -342,12 +345,6 @@ void get_buff_from_file (node **head,  FILE *in) {
 }
 
 
-int check_func (int val) {
-
-    return 0;
-}
-
-
 void get_tree_from_buff (node **node, char **buff) {
 
     assert (node  != nullptr);
@@ -363,11 +360,16 @@ void get_tree_from_buff (node **node, char **buff) {
             else {
                 get_tree_from_buff (&(*node)->left, buff);
                 
-                (*node)->type = OPERATION;
-                (*node)->data = **buff;
-                printf ("%c", **buff);
-                ++(*buff);
-                
+                if ((*node)->left->type != FUNCTION_NAME) {
+                    (*node)->type = OPERATION;
+                    (*node)->data = **buff;
+                    printf ("%c", **buff);
+                    ++(*buff);
+                }
+                else {
+                    (*node)->type = FUNCTION;
+                    (*node)->data = 'F';
+                }
                 get_tree_from_buff (&(*node)->right, buff);
             }
         }
@@ -387,23 +389,22 @@ void get_tree_from_buff (node **node, char **buff) {
                 ++(*buff);
             }
             else if (isalpha (**buff)) {
-                // сделать node FUNC И два потомка (cos) и (x)
+
                 if ((*node)->type == VARIABLE) {
-                    (*node)->type = FUNCTION;
+                    (*node)->type = FUNCTION_NAME;
                     (*node)->data = (*node)->data + **buff;
+                    printf ("%c", **buff);
                     ++(*buff);
                 }
-                else if ((*node)->data == FUNCTION) {
+                else if ((*node)->type == FUNCTION_NAME) {
                     (*node)->data = (*node)->data + **buff;
-                    printf ("%c",**buff);
-
+                    printf ("%c", **buff);
                     ++(*buff);
                 }
                 else {
                     (*node)->type = VARIABLE;
                     (*node)->data = **buff;
-                    printf ("%c",**buff);
-                    
+                    printf ("%c", **buff);
                     ++(*buff);
                 }
             }
@@ -462,10 +463,15 @@ static void in_order_graph (node *node, FILE *out) {
             fprintf (out, "%d [style=filled,color=\"cyan2\"];\n", node);
             fprintf (out, "%d [label=\"%c\"]\n", node, node->data);
         }
-        else {
+        else if (node->type == FUNCTION_NAME) {
             fprintf (out, "%d [shape=star];\n", node);
             fprintf (out, "%d [style=filled,color=\"red\"];\n", node);
             fprintf (out, "%d [label=\"%d\"]\n", node, node->data);
+        }
+        else {
+            fprintf (out, "%d [shape=oval];\n", node);
+            fprintf (out, "%d [style=filled,color=\"hotpink\"];\n", node);
+            fprintf (out, "%d [label=\"%c\"]\n", node, node->data); 
         }
 
     if (node->left != nullptr) {
@@ -481,10 +487,20 @@ static void in_order_graph (node *node, FILE *out) {
             fprintf (out, "%d [style=filled,color=\"green\"];\n", node->left);
             fprintf (out, "%d [label=\"%c\"]\n", node->left, node->left->data);
         }
-        else {
+        else if (node->left->type == VARIABLE) {
             fprintf (out, "%d [shape=diamond];\n", node->left);
             fprintf (out, "%d [style=filled,color=\"cyan2\"];\n", node->left);
             fprintf (out, "%d [label=\"%c\"]\n", node->left, node->left->data);
+        }
+        else if (node->left->type == FUNCTION_NAME) {
+            fprintf (out, "%d [shape=star];\n", node->left);
+            fprintf (out, "%d [style=filled,color=\"red\"];\n", node->left);
+            fprintf (out, "%d [label=\"%d\"]\n", node->left, node->left->data);
+        }
+        else {
+            fprintf (out, "%d [shape=oval];\n", node->left);
+            fprintf (out, "%d [style=filled,color=\"hotpink\"];\n", node->left);
+            fprintf (out, "%d [label=\"%c\"]\n", node->left, node->left->data); 
         }
         fprintf (out, "\n");
         in_order_graph (node->left, out);
@@ -503,12 +519,21 @@ static void in_order_graph (node *node, FILE *out) {
             fprintf (out, "%d [style=filled,color=\"green\"];\n", node->right);
             fprintf (out, "%d [label=\"%c\"]\n", node->right, node->right->data);
         }
-        else {
+        else if (node->right->type == VARIABLE) {
             fprintf (out, "%d [shape=diamond];\n", node->right);
             fprintf (out, "%d [style=filled,color=\"cyan2\"];\n", node->right);
-            fprintf (out, "%d [label=\"%c\"]\n", node->right, node->right->data); 
+            fprintf (out, "%d [label=\"%c\"]\n", node->right, node->right->data);
         }
-        fprintf (out, "\n");
+        else if (node->right->type == FUNCTION_NAME) {
+            fprintf (out, "%d [shape=star];\n", node->right);
+            fprintf (out, "%d [style=filled,color=\"red\"];\n", node->right);
+            fprintf (out, "%d [label=\"%d\"]\n", node->right, node->right->data);
+        }
+        else {
+            fprintf (out, "%d [shape=oval];\n", node->right);
+            fprintf (out, "%d [style=filled,color=\"hotpink\"];\n", node->right);
+            fprintf (out, "%d [label=\"%c\"]\n", node->right, node->right->data); 
+        }        fprintf (out, "\n");
         in_order_graph (node->right, out);
 
     }
