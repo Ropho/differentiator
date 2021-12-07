@@ -269,7 +269,83 @@ void simplify (node **node) {
     }
     return;
 }
+void diff_func (node **node) {
 
+    assert (*node != nullptr);
+    
+    if ((*node)->left == nullptr)
+        abort();
+
+    switch ((*node)->left->data) {
+
+        case LN: {
+            (*node)->type = OPERATION;
+            (*node)->data = '*';
+
+            (*node)->left->type = OPERATION;
+            (*node)->left->data = '^';
+            copy_node (&(*node)->left->left, (*node)->right);
+            ctor (&(*node)->left->right);
+            (*node)->left->right->type = NUMBER;
+            (*node)->left->right->data = -1;
+
+            diff (&(*node)->right);
+        break;
+        }
+        case COS: {
+            struct node *tmp = nullptr;
+            ctor (&tmp);
+            tmp->type = OPERATION;
+            tmp->data = '*';
+            
+            struct node *sub = nullptr;
+            ctor (&sub);
+            sub->type = NUMBER;
+            sub->data = -1;
+
+            (*node)->left->data = SIN;
+            tmp->left = *node;
+            tmp->right = sub;
+            *node = tmp;
+
+            tmp = nullptr;
+            ctor (&tmp);
+            tmp->type = OPERATION;
+            tmp->data = '*';
+            
+            struct node *dif = nullptr;
+            ctor (&dif);
+            copy_node (&dif, (*node)->left->right);
+            diff (&dif);
+            
+            tmp->left = *node;
+            tmp->right = dif;
+            *node = tmp;
+            break;
+        }
+        case SIN: {
+           
+            (*node)->left->data = COS;
+
+            struct node *tmp = nullptr;
+            ctor (&tmp);
+            tmp->type = OPERATION;
+            tmp->data = '*';
+            
+            struct node *dif = nullptr;
+            ctor (&dif);
+            copy_node (&dif, (*node)->right);
+            diff (&dif);
+            
+            tmp->left = *node;
+            tmp->right = dif;
+            *node = tmp;
+            break;
+        }
+        default:
+        break;
+    }
+}
 
 void diff (node **node) {
     
@@ -317,7 +393,7 @@ void diff (node **node) {
         break;
         }
         case FUNCTION :
-            
+            diff_func (node);
         break;
 
         default:

@@ -1,37 +1,69 @@
 digraph structs {
-10318096 [shape=oval];
-10318096 [style=filled,color="hotpink"];
-10318096 [label="F"]
-"10318096" -> "10317968";
-10317968 [shape=star];
-10317968 [style=filled,color="red"];
-10317968 [label="330"]
+618800 [shape=record];
+618800 [style=filled,color="green"];
+618800 [label="*"]
+"618800" -> "618416";
+618416 [shape=oval];
+618416 [style=filled,color="hotpink"];
+618416 [label="F"]
 
-10317968 [shape=star];
-10317968 [style=filled,color="red"];
-10317968 [label="330"]
-"10318096" -> "10318032";
-10318032 [shape=oval];
-10318032 [style=filled,color="hotpink"];
-10318032 [label="F"]
+618416 [shape=oval];
+618416 [style=filled,color="hotpink"];
+618416 [label="F"]
+"618416" -> "618512";
+618512 [shape=star];
+618512 [style=filled,color="red"];
+618512 [label="325"]
 
-10318032 [shape=oval];
-10318032 [style=filled,color="hotpink"];
-10318032 [label="F"]
-"10318032" -> "10318064";
-10318064 [shape=star];
-10318064 [style=filled,color="red"];
-10318064 [label="218"]
+618512 [shape=star];
+618512 [style=filled,color="red"];
+618512 [label="325"]
+"618416" -> "618544";
+618544 [shape=oval];
+618544 [style=filled,color="hotpink"];
+618544 [label="F"]
 
-10318064 [shape=star];
-10318064 [style=filled,color="red"];
-10318064 [label="218"]
-"10318032" -> "10317808";
-10317808 [shape=diamond];
-10317808 [style=filled,color="cyan2"];
-10317808 [label="x"]
+618544 [shape=oval];
+618544 [style=filled,color="hotpink"];
+618544 [label="F"]
+"618544" -> "618608";
+618608 [shape=star];
+618608 [style=filled,color="red"];
+618608 [label="218"]
 
-10317808 [shape=diamond];
-10317808 [style=filled,color="cyan2"];
-10317808 [label="x"]
+618608 [shape=star];
+618608 [style=filled,color="red"];
+618608 [label="218"]
+"618544" -> "618672";
+618672 [shape=diamond];
+618672 [style=filled,color="cyan2"];
+618672 [label="x"]
+
+618672 [shape=diamond];
+618672 [style=filled,color="cyan2"];
+618672 [label="x"]
+"618800" -> "628144";
+628144 [shape=record];
+628144 [style=filled,color="green"];
+628144 [label="^"]
+
+628144 [shape=record];
+628144 [style=filled,color="green"];
+628144 [label="^"]
+"628144" -> "628112";
+628112 [shape=diamond];
+628112 [style=filled,color="cyan2"];
+628112 [label="x"]
+
+628112 [shape=diamond];
+628112 [style=filled,color="cyan2"];
+628112 [label="x"]
+"628144" -> "627792";
+627792 [shape=oval];
+627792 [style=filled,color="hotpink"];
+627792 [label="-1"]
+
+627792 [shape=oval];
+627792 [style=filled,color="hotpink"];
+627792 [label="-1"]
 }
