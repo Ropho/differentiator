@@ -1,7 +1,7 @@
 #include "func.h"
                                                                 //TO DO 7.12
                                                                         //1)производные cos,sin,ln
-                                                                //2)добавить отриц числа
+                                                                        //2)добавить отриц числа
                                                                 //3)рефакторинг (add,
                                                                 //delete) node
 
@@ -16,7 +16,9 @@ int main (void) {
     node *head = nullptr;
     get_buff_from_file (&head, in);
     
-
+    // graph (head);
+    // return 0;
+    
     diff (&head);
 
     // graph (head);

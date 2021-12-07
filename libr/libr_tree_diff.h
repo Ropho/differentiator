@@ -42,7 +42,7 @@ enum FUNCTIONS {
 
 };
 
-void ctor (node **node);
+void ctor (node **node, char param);
 void dtor (node **node);
 void func (node *node);
 void pre_order (node **node, void (*func) (struct node **));

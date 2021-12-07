@@ -1,16 +1,50 @@
 #include "libr_tree_diff.h"
 
 
-void ctor (node **node) {
+void ctor (node **node, char param) {
 
     *node = (struct node*)calloc(1, sizeof (struct node));
 
-    (*node)->right = nullptr;
-    (*node)->left  = nullptr;
+    switch (param) {
+    
+    case '*':
+        (*node)->right = nullptr;
+        (*node)->left  = nullptr;
+        ctor (&(*node)->left, 0);
+        ctor (&(*node)->right, 0);
 
-    (*node)->data  = 0;
-    (*node)->type  = 0;
+        (*node)->type  = OPERATION;
+        (*node)->data  = '*';
+    break;
+    
+    case '+':
+        (*node)->right = nullptr;
+        (*node)->left  = nullptr;
+        ctor (&(*node)->left, 0);
+        ctor (&(*node)->right, 0);
 
+        (*node)->type  = OPERATION;
+        (*node)->data  = '+';
+    break;
+
+    case '-':
+        (*node)->right = nullptr;
+        (*node)->left  = nullptr;
+        ctor (&(*node)->left, 0);
+        ctor (&(*node)->right, 0);
+
+        (*node)->type  = OPERATION;
+        (*node)->data  = '-';
+    break;
+
+    default:
+        (*node)->right = nullptr;
+        (*node)->left  = nullptr;
+    
+        (*node)->data  = 0;
+        (*node)->type  = 0;
+    break;
+    }
     return;
 }
 

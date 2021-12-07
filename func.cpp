@@ -33,12 +33,23 @@ void diff_sum (node **node) {
 }
 
 
+void diff_sub (node **node) {
+
+    assert (*node != nullptr);
+
+    diff (&(*node)->left);
+    diff (&(*node)->right);
+
+    return;
+}
+
+
 void copy_node (node **dest, node *src) {
 
     assert (src != nullptr);
 
     if (*dest == nullptr)
-        ctor (dest);
+        ctor (dest, 0);
     
     (*dest)->type = src->type;
     (*dest)->data = src->data;
@@ -57,19 +68,13 @@ void diff_mul (node **node) {
     assert (*node != nullptr);
 
     struct node *plus = nullptr;
-    ctor (&plus);
-    plus->type = OPERATION;
-    plus->data = '+';
+    ctor (&plus, '+');
 
     struct node *left_mul = nullptr;
-    ctor (&left_mul);
-    left_mul->type = OPERATION;
-    left_mul->data = '*';
+    ctor (&left_mul, '*');
 
     struct node *right_mul = nullptr;
-    ctor (&right_mul);
-    right_mul->type = OPERATION;
-    right_mul->data = '*';
+    ctor (&right_mul, '*');
 
     plus->left = left_mul;
     plus->right = right_mul;
@@ -111,18 +116,16 @@ void diff_pow_number (node **node) {
     diff (&right1);
 
     struct node *mul2 = nullptr;
-    ctor (&mul2);
-    mul2->type = OPERATION;
-    mul2->data = '*';
+    ctor (&mul2, '*');
+
     copy_node (&(mul2->left), (*node)->right);
     copy_node (&(mul2->right), (*node));
 
     struct node *sub = nullptr;
-    ctor (&sub);
-    sub->type = OPERATION;
-    sub->data = '-';
+    ctor (&sub, '-');
+
     copy_node (&(sub->left), mul2->left);
-    ctor (&(sub->right));
+    ctor (&(sub->right), 0);
     sub->right->data = 1;
     sub->right->type = NUMBER;
 
@@ -130,9 +133,7 @@ void diff_pow_number (node **node) {
     mul2->right->right = sub;
 
     struct node *mul1 = nullptr;
-    ctor (&mul1);
-    mul1->type = OPERATION;
-    mul1->data = '*';
+    ctor (&mul1, '*');
     mul1->right = right1;
     mul1->left = mul2;
 
@@ -169,14 +170,14 @@ void simplify (node **node) {
                 }
                 else if ((*node)->right->data == 0 || (*node)->left->data == 0) {
                     dtor_tree (node);
-                    ctor (node);
+                    ctor (node, 0);
                     (*node)->type = NUMBER;
                     (*node)->data = 0;
                 }
                 else if ((*node)->right->type == NUMBER && (*node)->left->type == NUMBER) {
                     
                     struct node *tmp = nullptr;
-                    ctor (&tmp);
+                    ctor (&tmp, 0);
                     tmp->type = NUMBER;
                     tmp->data = (*node)->left->data * (*node)->right->data;
 
@@ -204,7 +205,7 @@ void simplify (node **node) {
                 else if ((*node)->right->type == NUMBER && (*node)->left->type == NUMBER) {
                     
                     struct node *tmp = nullptr;
-                    ctor (&tmp);
+                    ctor (&tmp, 0);
                     tmp->type = NUMBER;
                     tmp->data = (*node)->left->data + (*node)->right->data;
 
@@ -232,7 +233,7 @@ void simplify (node **node) {
                 else if ((*node)->right->type == NUMBER && (*node)->left->type == NUMBER) {
                     
                     struct node *tmp = nullptr;
-                    ctor (&tmp);
+                    ctor (&tmp, 0);
                     tmp->type = NUMBER;
                     tmp->data = (*node)->left->data - (*node)->right->data;
 
@@ -253,7 +254,7 @@ void simplify (node **node) {
                 }
                 else if ((*node)->right->data == 0) {
                     struct node *tmp = nullptr;
-                    ctor (&tmp);
+                    ctor (&tmp, 0);
                     tmp->type = NUMBER;
                     tmp->data = 0;
 
@@ -269,6 +270,8 @@ void simplify (node **node) {
     }
     return;
 }
+
+
 void diff_func (node **node) {
 
     assert (*node != nullptr);
@@ -285,7 +288,7 @@ void diff_func (node **node) {
             (*node)->left->type = OPERATION;
             (*node)->left->data = '^';
             copy_node (&(*node)->left->left, (*node)->right);
-            ctor (&(*node)->left->right);
+            ctor (&(*node)->left->right, 0);
             (*node)->left->right->type = NUMBER;
             (*node)->left->right->data = -1;
 
@@ -294,12 +297,10 @@ void diff_func (node **node) {
         }
         case COS: {
             struct node *tmp = nullptr;
-            ctor (&tmp);
-            tmp->type = OPERATION;
-            tmp->data = '*';
+            ctor (&tmp, '*');
             
             struct node *sub = nullptr;
-            ctor (&sub);
+            ctor (&sub, 0);
             sub->type = NUMBER;
             sub->data = -1;
 
@@ -309,12 +310,10 @@ void diff_func (node **node) {
             *node = tmp;
 
             tmp = nullptr;
-            ctor (&tmp);
-            tmp->type = OPERATION;
-            tmp->data = '*';
+            ctor (&tmp, '*');
             
             struct node *dif = nullptr;
-            ctor (&dif);
+            ctor (&dif, 0);
             copy_node (&dif, (*node)->left->right);
             diff (&dif);
             
@@ -328,12 +327,10 @@ void diff_func (node **node) {
             (*node)->left->data = COS;
 
             struct node *tmp = nullptr;
-            ctor (&tmp);
-            tmp->type = OPERATION;
-            tmp->data = '*';
+            ctor (&tmp, '*');
             
             struct node *dif = nullptr;
-            ctor (&dif);
+            ctor (&dif, 0);
             copy_node (&dif, (*node)->right);
             diff (&dif);
             
@@ -346,6 +343,7 @@ void diff_func (node **node) {
         break;
     }
 }
+
 
 void diff (node **node) {
     
@@ -372,7 +370,11 @@ void diff (node **node) {
                     return;
                 break;
                 }
-
+                case '-': {
+                    diff_sub (node);
+                    return;
+                break;
+                }
                 case '*': {
                     diff_mul (node);
                     return;
@@ -430,7 +432,7 @@ void get_tree_from_buff (node **node, char **buff) {
 
         if (**buff == '(') {
             if (*node == nullptr) {
-                ctor (node);
+                ctor (node, 0);
                 ++(*buff);
             }
             else {
@@ -460,7 +462,13 @@ void get_tree_from_buff (node **node, char **buff) {
             if (isdigit (**buff)) {
                 
                 (*node)->type = NUMBER;
-                (*node)->data = 10 * (*node)->data + **buff - '0';
+                if ((*node)->data >= 0) {
+                    (*node)->data = 10 * (*node)->data + **buff - '0';
+                }
+                else if ((*node)->data != MINUS_ZERO)
+                    (*node)->data = -1 * (10 * abs ((*node)->data) + **buff - '0');
+                else 
+                    (*node)->data = -1 * (**buff - '0');
                 printf ("%c", **buff);
                 ++(*buff);
             }
@@ -483,6 +491,12 @@ void get_tree_from_buff (node **node, char **buff) {
                     printf ("%c", **buff);
                     ++(*buff);
                 }
+            }
+            else if (**buff = '-') {
+                (*node)->type = NUMBER;
+                (*node)->data = MINUS_ZERO;
+                printf ("%c", **buff);
+                ++(*buff);   
             }
             else {
                 assert (0);

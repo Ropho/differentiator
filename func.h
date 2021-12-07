@@ -10,6 +10,7 @@
 #include <ctype.h>
 #include "libr\libr_tree_diff.h"
 
+#define MINUS_ZERO -666
 
 void graph                 (node* head);
 static void in_order_graph (node *node, FILE *out);
